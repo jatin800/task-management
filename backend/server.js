@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import User from "./model/userModel.js";
+import router from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -13,17 +13,8 @@ mongoose
   .then(() => console.log("Connect to MongoDB"))
   .catch((error) => console.log(" Error Connecting to MongoDB", error));
 
-app.post("/createuser", async (req, res) => {
-  try {
-    const dataBody = req.body;
-    const user = new User(dataBody);
-    const userCreated = await user.save();
-    res.send(userCreated);
-  } catch (error) {
-    console.log("Error in CreateUser", error);
-    res.status(500).send(error);
-  }
-});
+
+  app.use(router)
 
 app.listen(PORT),
   () => {
