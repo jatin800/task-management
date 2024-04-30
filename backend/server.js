@@ -3,10 +3,8 @@ import router from "./routes/userRoutes.js";
 import { connectToMongoDB } from "./db/DB.js";
 
 const app = express();
-
-connectToMongoDB();
-
 app.use(express.json());
+connectToMongoDB();
 
 const PORT = 5000;
 
